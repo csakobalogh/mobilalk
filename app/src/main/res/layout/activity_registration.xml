@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <TextView
+        android:id="@+id/registrationTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
+        android:text="@string/regisztracio"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registrationTV"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:autoHandwritingEnabled="false"
+        android:ems="10"
+        android:hint="@string/nev"
+        android:inputType="textPersonName"
+        android:privateImeOptions="disableHandwriting"
+        android:textSize="20sp"
+        tools:ignore="Autofill,UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/usernameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameET"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:autoHandwritingEnabled="false"
+        android:ems="10"
+        android:hint="@string/felhasznalonev"
+        android:inputType="text"
+        android:privateImeOptions="disableHandwriting"
+        android:textSize="20sp"
+        tools:ignore="Autofill,UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/emailET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernameET"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:autoHandwritingEnabled="false"
+        android:ems="10"
+        android:hint="@string/email_cim"
+        android:inputType="textEmailAddress"
+        android:privateImeOptions="disableHandwriting"
+        android:textSize="20sp"
+        tools:ignore="Autofill,UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailET"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:autoHandwritingEnabled="false"
+        android:ems="10"
+        android:hint="@string/jelszo"
+        android:inputType="textPassword"
+        android:privateImeOptions="disableHandwriting"
+        android:textSize="20sp"
+        tools:ignore="Autofill,UnusedAttribute" />
+
+    <EditText
+        android:id="@+id/passwordAgainET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordET"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:autoHandwritingEnabled="false"
+        android:ems="10"
+        android:hint="@string/jelszo_megerositese"
+        android:inputType="textPassword"
+        android:privateImeOptions="disableHandwriting"
+        android:textSize="20sp"
+        tools:ignore="Autofill,UnusedAttribute" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordAgainET"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/regisztracio"
+            android:onClick="regisztracio"
+            tools:ignore="ButtonStyle,UsingOnClickInXml" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/megse"
+            android:onClick="megse"
+            tools:ignore="ButtonStyle,UsingOnClickInXml" />
+
+    </LinearLayout>
+
+</RelativeLayout>
