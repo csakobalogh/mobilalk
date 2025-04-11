@@ -2,7 +2,6 @@ package com.example.szonyegwebshop;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import java.util.ArrayList;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -122,7 +120,7 @@ public class ProductListActivity extends AppCompatActivity {
                 mItemList.add(item);
             }
 
-            if (mItemList.size() == 0) {
+            if (mItemList.isEmpty()) {
                 initializeData();
                 queryData();
             }
