@@ -57,10 +57,10 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
     @Override
     public Filter getFilter() {
-        return shopingFilter;
+        return shoppingFilter;
     }
 
-    private Filter shopingFilter = new Filter() {
+    private Filter shoppingFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             ArrayList<ShoppingItem> filteredList = new ArrayList<>();
@@ -86,13 +86,12 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mShoppingItemData = (ArrayList) filterResults.values;
+            mShoppingItemData = (ArrayList)filterResults.values;
             notifyDataSetChanged();
         }
     };
 
     class ViewHolder extends RecyclerView.ViewHolder {
-
         private TextView mTitleText;
         private TextView mInfoText;
         private TextView mPriceText;
@@ -108,12 +107,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             mRatingBar = itemView.findViewById(R.id.ratingBar);
             mPriceText = itemView.findViewById(R.id.price);
 
-            itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ((ProductListActivity) mContext).updateAlertIcon();
-                }
-            });
+            itemView.findViewById(R.id.add_to_cart).setOnClickListener(view -> ((ProductListActivity) mContext).updateAlertIcon());
         }
 
         void bindTo(ShoppingItem currentItem) {

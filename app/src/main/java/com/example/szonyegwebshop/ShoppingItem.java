@@ -18,19 +18,15 @@ public class ShoppingItem {
     String getName() {
         return name;
     }
-
     String getInfo() {
         return info;
     }
-
     String getPrice() {
         return price;
     }
-
     float getRatedInfo() {
         return ratedInfo;
     }
-
     public int getImageResource() {
         return imageResource;
     }

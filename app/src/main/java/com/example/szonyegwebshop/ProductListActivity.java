@@ -2,8 +2,6 @@ package com.example.szonyegwebshop;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-
-import android.annotation.SuppressLint;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,11 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import android.widget.SearchView;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ProductListActivity extends AppCompatActivity {
     private static final String LOG_TAG = ProductListActivity.class.getName();
@@ -53,6 +49,7 @@ public class ProductListActivity extends AppCompatActivity {
         mItemList = new ArrayList<>();
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         recyclerView.setAdapter(mAdapter);
+        initializeData();
     }
 
     private void initializeData() {
