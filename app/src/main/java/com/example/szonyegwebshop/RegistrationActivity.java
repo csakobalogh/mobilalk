@@ -113,11 +113,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void megse(View view) {
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void startProductList() {
         Intent intent = new Intent(this, ProductListActivity.class);
         //intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

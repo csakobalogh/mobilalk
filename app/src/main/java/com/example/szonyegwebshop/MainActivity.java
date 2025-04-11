@@ -33,12 +33,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegistrationActivity.class);
         intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void bejelentkezes(MenuItem item) {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void bejelentkezesVendegkent(MenuItem item) {
@@ -59,5 +61,6 @@ public class MainActivity extends AppCompatActivity {
     private void startProductList() {
         Intent intent = new Intent(this, ProductListActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

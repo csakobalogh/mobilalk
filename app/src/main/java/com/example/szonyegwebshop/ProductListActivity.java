@@ -158,6 +158,7 @@ public class ProductListActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "Logout clicked!");
             FirebaseAuth.getInstance().signOut();
             finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Cart clicked!");
@@ -177,7 +178,7 @@ public class ProductListActivity extends AppCompatActivity {
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
         item.setIcon(drawableId);
-        GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+        GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
         layoutManager.setSpanCount(spanCount);
     }
 
