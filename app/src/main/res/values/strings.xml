@@ -10,4 +10,76 @@
     <string name="megse">Mégse</string>
     <string name="bejelentkezes_vendegkent">Bejelentkezés vendégként</string>
     <string name="termekek">Termékek</string>
+    <string name="kosarba">Kosárba</string>
+    <string name="placeholder">Leírás</string>
+    <string name="beallitas">Beállítás</string>
+    <string name="kijelentkezes">Kijelentkezés</string>
+    <string name="kosar">Kosár</string>
+    <string name="kereses">Keresés</string>
+    <string name="views">views</string>
+
+    <string-array name="shopping_item_names">
+        <item>Szonyeg 1</item>
+        <item>Szonyeg 2</item>
+        <item>Szonyeg 3</item>
+        <item>Szonyeg 4</item>
+        <item>Szonyeg 5</item>
+        <item>Szonyeg 6</item>
+        <item>Szonyeg 7</item>
+        <item>Szonyeg 8</item>
+        <item>Szonyeg 9</item>
+        <item>Szonyeg 10</item>
+    </string-array>
+
+    <string-array name="shopping_item_desc">
+        <item>Ez egy okos telefon!</item>
+        <item>Ez egy tablet!</item>
+        <item>Ez egy gamer pc!</item>
+        <item>Ez egy OLED TV!</item>
+        <item>Ez egy kerékpár!</item>
+        <item>Ez egy lego!</item>
+        <item>Ez egy jelmez!</item>
+        <item>Ezek sport eszközök!</item>
+        <item>Ezek konyhai eszküzök!</item>
+        <item>Ez egy bútor!</item>
+    </string-array>
+
+    <array name="shopping_item_rates">
+        <item>3.5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>1.5</item>
+        <item>5</item>
+        <item>3</item>
+        <item>4.5</item>
+        <item>4</item>
+        <item>5</item>
+        <item>2.5</item>
+    </array>
+
+    <array name="shopping_item_images">
+        <item>@drawable/carpet_1</item>
+        <item>@drawable/carpet_2</item>
+        <item>@drawable/carpet_3</item>
+        <item>@drawable/carpet_4</item>
+        <item>@drawable/carpet_5</item>
+        <item>@drawable/carpet_6</item>
+        <item>@drawable/carpet_7</item>
+        <item>@drawable/carpet_8</item>
+        <item>@drawable/carpet_9</item>
+        <item>@drawable/carpet_10</item>
+    </array>
+
+    <array name="shopping_item_price">
+        <item>100</item>
+        <item>150</item>
+        <item>500</item>
+        <item>300</item>
+        <item>180</item>
+        <item>70</item>
+        <item>20</item>
+        <item>30</item>
+        <item>15</item>
+        <item>90</item>
+    </array>
 </resources>
