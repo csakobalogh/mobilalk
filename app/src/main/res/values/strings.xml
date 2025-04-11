@@ -17,44 +17,48 @@
     <string name="kosar">Kosár</string>
     <string name="kereses">Keresés</string>
     <string name="views">views</string>
+    <string name="welcoming_image">Welcoming image</string>
+    <string name="udvozlo_szoveg1">Üdvözlünk az alkalmazásban!</string>
+    <string name="udvozlo_szoveg2">Fedezd fel prémium minőségű szőnyegeinket, amelyek otthonodat meleggé és stílusossá varázsolják! Válogass különböző méretek, minták és anyagok közül, és találd meg a tökéletes darabot!</string>
+    <string name="udvozlo_szoveg3">Böngéssz kínálatunkban, és tedd még otthonosabbá lakásod!</string>
 
     <string-array name="shopping_item_names">
-        <item>Szonyeg 1</item>
-        <item>Szonyeg 2</item>
-        <item>Szonyeg 3</item>
-        <item>Szonyeg 4</item>
-        <item>Szonyeg 5</item>
-        <item>Szonyeg 6</item>
-        <item>Szonyeg 7</item>
-        <item>Szonyeg 8</item>
-        <item>Szonyeg 9</item>
-        <item>Szonyeg 10</item>
+        <item>Perzsa Szőnyeg</item>
+        <item>Perzsa Szőnyeg</item>
+        <item>Modern Szőnyeg</item>
+        <item>Vagány Szőnyeg</item>
+        <item>Klasszikus Szőnyeg</item>
+        <item>Alföldi Szőnyeg</item>
+        <item>Házi Szőnyeg</item>
+        <item>Báránybőr Szőnyeg</item>
+        <item>Elegáns Szőnyeg</item>
+        <item>Virágmintás Szőnyeg</item>
     </string-array>
 
     <string-array name="shopping_item_desc">
-        <item>Ez egy okos telefon!</item>
-        <item>Ez egy tablet!</item>
-        <item>Ez egy gamer pc!</item>
-        <item>Ez egy OLED TV!</item>
-        <item>Ez egy kerékpár!</item>
-        <item>Ez egy lego!</item>
-        <item>Ez egy jelmez!</item>
-        <item>Ezek sport eszközök!</item>
-        <item>Ezek konyhai eszküzök!</item>
-        <item>Ez egy bútor!</item>
+        <item>Finom, kézzel szőtt perzsa szőnyeg, egyedi mintával és színvilággal.</item>
+        <item>Elegáns, modern perzsa szőnyeg, bő választékban és különféle színekben.</item>
+        <item>Divatos modern szőnyeg, ideális nappalihoz vagy hálószobához.</item>
+        <item>Vibráló, vagány mintázattal rendelkező szőnyeg, tökéletes egyedi stílusú belső terekhez.</item>
+        <item>Klasszikus stílusú, tartós és strapabíró szőnyeg, tökéletes minden nappalihoz.</item>
+        <item>Hagyományos alföldi szőnyeg, gazdag színekben, kézzel készült.</item>
+        <item>Puhább, kényelmes szőnyeg, mely ideális otthoni használatra, melegséget biztosít a lábnak.</item>
+        <item>Finom báránybőr szőnyeg, amely meleg, kellemes tapintású, és remekül illeszkedik a hagyományos otthonokba.</item>
+        <item>Elegáns szőnyeg, mely a luxust és kényelmet ötvözi a tökéletes kivitelezéssel.</item>
+        <item>Virágmintás szőnyeg, tökéletes a tavaszi és nyári hangulathoz, élénk színekkel és friss dizájnnal.</item>
     </string-array>
 
     <array name="shopping_item_rates">
-        <item>3.5</item>
-        <item>5</item>
-        <item>4</item>
-        <item>1.5</item>
-        <item>5</item>
-        <item>3</item>
         <item>4.5</item>
-        <item>4</item>
-        <item>5</item>
-        <item>2.5</item>
+        <item>5.0</item>
+        <item>4.0</item>
+        <item>3.8</item>
+        <item>4.2</item>
+        <item>4.5</item>
+        <item>4.8</item>
+        <item>5.0</item>
+        <item>4.7</item>
+        <item>4.3</item>
     </array>
 
     <array name="shopping_item_images">
@@ -71,15 +75,16 @@
     </array>
 
     <array name="shopping_item_price">
-        <item>100</item>
-        <item>150</item>
-        <item>500</item>
-        <item>300</item>
-        <item>180</item>
-        <item>70</item>
-        <item>20</item>
-        <item>30</item>
-        <item>15</item>
-        <item>90</item>
+        <item>20,000 Ft</item>
+        <item>25,000 Ft</item>
+        <item>15,000 Ft</item>
+        <item>30,000 Ft</item>
+        <item>18,500 Ft</item>
+        <item>8,000 Ft</item>
+        <item>12,000 Ft</item>
+        <item>5,500 Ft</item>
+        <item>9,500 Ft</item>
+        <item>14,000 Ft</item>
     </array>
+
 </resources>
