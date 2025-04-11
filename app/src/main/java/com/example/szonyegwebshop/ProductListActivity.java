@@ -159,11 +159,6 @@ public class ProductListActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             finish();
             return true;
-        } else if (id == R.id.settings_button) {
-            Log.d(LOG_TAG, "Setting clicked!");
-            FirebaseAuth.getInstance().signOut();
-            finish();
-            return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Cart clicked!");
             return true;

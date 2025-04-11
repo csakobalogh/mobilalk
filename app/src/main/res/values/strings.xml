@@ -21,6 +21,7 @@
     <string name="udvozlo_szoveg1">Üdvözlünk az alkalmazásban!</string>
     <string name="udvozlo_szoveg2">Fedezd fel prémium minőségű szőnyegeinket, amelyek otthonodat meleggé és stílusossá varázsolják! Válogass különböző méretek, minták és anyagok közül, és találd meg a tökéletes darabot!</string>
     <string name="udvozlo_szoveg3">Böngéssz kínálatunkban, és tedd még otthonosabbá lakásod!</string>
+    <string name="nezetvaltas">Nézet váltása</string>
 
     <string-array name="shopping_item_names">
         <item>Perzsa Szőnyeg</item>

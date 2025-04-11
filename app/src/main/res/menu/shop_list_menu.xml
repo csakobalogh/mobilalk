@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/search_bar"
-        app:showAsAction="always"
         android:icon="@drawable/ic_search"
         android:title="@string/kereses"
         app:actionViewClass="android.widget.SearchView"
-        tools:ignore="AlwaysShowAction">
-    </item>
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
     <item
         android:id="@+id/cart"
-        app:showAsAction="always"
-        android:title="@string/kosar"
         android:icon="@drawable/ic_shopping_cart"
+        android:title="@string/kosar"
         app:actionLayout="@layout/custom_menu_item"
-        >
-    </item>
+        app:showAsAction="always" />
     <item
         android:id="@+id/view_selector"
-        app:showAsAction="always"
-        android:title="@string/views"
         android:icon="@drawable/ic_view_grid"
-        >
-    </item>
+        android:orderInCategory="1"
+        android:title="@string/nezetvaltas"
+        app:showAsAction="never" />
     <item
         android:id="@+id/log_out_button"
-        app:showAsAction="never"
         android:icon="@drawable/ic_exit"
+        android:orderInCategory="2"
         android:title="@string/kijelentkezes"
-        android:orderInCategory="2">
-    </item>
-    <item
-        android:id="@+id/settings_button"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/beallitas"
-        android:orderInCategory="1">
-    </item>
+        app:showAsAction="never" />
 </menu>
