@@ -34,7 +34,7 @@
             android:layout_marginRight="20dp"
             android:autoHandwritingEnabled="false"
             android:ems="10"
-            android:hint="@string/felhasznalonev"
+            android:hint="@string/email_cim"
             android:inputType="text"
             android:privateImeOptions="disableHandwriting"
             android:textSize="20sp"

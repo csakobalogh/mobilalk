@@ -12,6 +12,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegistrationActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegistrationActivity.class.getName();
@@ -56,14 +58,27 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
-        Log.i(LOG_TAG, "Regisztracio: " + name + " " + username + " " +  email + " " +  password + " " + passwordAgain);
-
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i(LOG_TAG, "Felhasznalo sikeresen letrehozva.");
-                    startProductList();
+                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                    if (firebaseUser != null) {
+                        String userId = firebaseUser.getUid();
+                        User user = new User(name, username, email);
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("users").document(userId)
+                                .set(user)
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.i(LOG_TAG, "Felhasznalo adatai sikeresen mentve.");
+                                    startProductList();
+                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e(LOG_TAG, "Felhasznalo adatok mentese sikertelen: " + e.getMessage());
+                                });
+                    }
                 } else {
                     Log.d(LOG_TAG, "Felhasznalo letrehozasa nem sikerult");
                     Toast.makeText(RegistrationActivity.this, "Felhasznalo letrehozasa nem sikerult: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
