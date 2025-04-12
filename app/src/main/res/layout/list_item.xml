@@ -59,5 +59,14 @@
             android:text="@string/kosarba"
             android:layout_centerHorizontal="true"/>
 
+        <Button
+            android:id="@+id/remove_from_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_to_cart"
+            android:text="@string/eltavolitas"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -6,14 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.szonyegwebshop.ShoppingItem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +30,19 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     private ArrayList<ShoppingItem> mShoppingItemData = new ArrayList<>();
     private ArrayList<ShoppingItem> mShoppingItemDataAll = new ArrayList<>();
     private Context mContext;
+    private boolean isCartView = false;
     private int lastPosition = -1;
+    private OnItemRemovedListener onItemRemovedListener;
 
-    ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData) {
+    ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData, boolean isCartView) {
         this.mShoppingItemData = itemsData;
         this.mShoppingItemDataAll = itemsData;
         this.mContext = context;
+        this.isCartView = isCartView;
+    }
+
+    public interface OnItemRemovedListener {
+        void onItemRemoved();
     }
 
     @Override
@@ -86,10 +101,14 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
         @Override
         protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            mShoppingItemData = (ArrayList)filterResults.values;
+            mShoppingItemData = (ArrayList) filterResults.values;
             notifyDataSetChanged();
         }
     };
+
+    public void setOnItemRemovedListener(OnItemRemovedListener listener) {
+        this.onItemRemovedListener = listener;
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mTitleText;
@@ -106,8 +125,63 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             mItemImage = itemView.findViewById(R.id.itemImage);
             mRatingBar = itemView.findViewById(R.id.ratingBar);
             mPriceText = itemView.findViewById(R.id.price);
+            Button addToCartButton = itemView.findViewById(R.id.add_to_cart);
+            Button removeFromCartButton = itemView.findViewById(R.id.remove_from_cart);
+            if (addToCartButton != null && removeFromCartButton != null) {
+                if (isCartView) {
+                    addToCartButton.setVisibility(View.GONE);
+                    removeFromCartButton.setVisibility(View.VISIBLE);
 
-            itemView.findViewById(R.id.add_to_cart).setOnClickListener(view -> ((ProductListActivity) mContext).updateAlertIcon());
+                    removeFromCartButton.setOnClickListener(view -> {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                        String uid = auth.getCurrentUser().getUid();
+                        ShoppingItem item = mShoppingItemData.get(getBindingAdapterPosition());
+
+                        db.collection("users")
+                                .document(uid)
+                                .collection("cart")
+                                .whereEqualTo("name", item.getName())
+                                .get()
+                                .addOnSuccessListener(queryDocumentSnapshots -> {
+                                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                                        doc.getReference().delete();
+                                    }
+                                    Toast.makeText(mContext, "Eltávolítva a kosárból", Toast.LENGTH_SHORT).show();
+
+                                    mShoppingItemData.remove(getBindingAdapterPosition());
+                                    notifyItemRemoved(getBindingAdapterPosition());
+
+                                    if (onItemRemovedListener != null) {
+                                        onItemRemovedListener.onItemRemoved();
+                                    }
+                                })
+                                .addOnFailureListener(e -> Toast.makeText(mContext, "Hiba: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    });
+
+                } else {
+                    removeFromCartButton.setVisibility(View.GONE);
+
+                    addToCartButton.setOnClickListener(view -> {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                        String uid = auth.getCurrentUser().getUid();
+                        ShoppingItem item = mShoppingItemData.get(getAdapterPosition());
+
+                        db.collection("users")
+                                .document(uid)
+                                .collection("cart")
+                                .add(item)
+                                .addOnSuccessListener(documentReference -> {
+                                    Toast.makeText(mContext, "Kosárba téve!", Toast.LENGTH_SHORT).show();
+                                    ((ProductListActivity) mContext).updateAlertIcon();
+                                })
+                                .addOnFailureListener(e -> Toast.makeText(mContext, "Hiba: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    });
+                }
+            }
         }
 
         void bindTo(ShoppingItem currentItem) {

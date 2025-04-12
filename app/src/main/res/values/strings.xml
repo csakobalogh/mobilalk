@@ -87,5 +87,10 @@
         <item>9,500 Ft</item>
         <item>14,000 Ft</item>
     </array>
+    <string name="title_activity_cart">CartActivity</string>
+    <string name="fizetes">Fizetés</string>
+    <string name="osszesen">Összesen: 0 Ft</string>
+    <string name="eltavolitas">Eltávolítás</string>
+    <string name="vissza_a_termekekhez">Vissza a termékekhez</string>
 
 </resources>

@@ -28,18 +28,18 @@ import android.widget.SearchView;
 
 public class ProductListActivity extends AppCompatActivity {
     private static final String LOG_TAG = ProductListActivity.class.getName();
-    private FirebaseUser user;
     private RecyclerView recyclerView;
     private ArrayList<ShoppingItem> mItemList;
     private ShoppingItemAdapter mAdapter;
-    private int gridNumber = 1;
     private FrameLayout redCircle;
     private TextView countTextView;
+    private FirebaseUser user;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mItems;
+    private int gridNumber = 1;
     private int cartItems = 0;
     private int itemLimit = 10;
     private boolean viewRow = true;
-    private FirebaseFirestore mFirestore;
-    private CollectionReference mItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
         mItemList = new ArrayList<>();
-        mAdapter = new ShoppingItemAdapter(this, mItemList);
+        mAdapter = new ShoppingItemAdapter(this, mItemList, false);
         recyclerView.setAdapter(mAdapter);
         mFirestore = FirebaseFirestore.getInstance();
         mItems = mFirestore.collection("Items");
@@ -162,6 +162,9 @@ public class ProductListActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "Cart clicked!");
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
