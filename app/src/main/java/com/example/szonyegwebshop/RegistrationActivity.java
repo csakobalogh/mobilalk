@@ -83,7 +83,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void regisztracio(View view) {
-        // TODO: Regisztracio funkcio megvalositasa
         String name = nameET.getText().toString();
         String username = usernameET.getText().toString();
         String email = emailET.getText().toString();
@@ -118,7 +117,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void startProductList() {
         Intent intent = new Intent(this, ProductListActivity.class);
-        //intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
