@@ -1,16 +1,13 @@
 package com.example.szonyegwebshop;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegistrationActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegistrationActivity.class.getName();
     private static final int SECRET_KEY = 99;
-
     private FirebaseAuth mAuth;
 
     EditText nameET;
@@ -27,8 +23,6 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText emailET;
     EditText passwordET;
     EditText passwordAgainET;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,38 +42,6 @@ public class RegistrationActivity extends AppCompatActivity {
         passwordAgainET = findViewById(R.id.passwordAgainET);
 
         mAuth = FirebaseAuth.getInstance();
-
-        Log.i(LOG_TAG,  "onCreate");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(LOG_TAG,  "onStart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(LOG_TAG,  "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(LOG_TAG,  "onDestroy");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(LOG_TAG,  "onPause");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(LOG_TAG,  "onResume");
     }
 
     public void regisztracio(View view) {

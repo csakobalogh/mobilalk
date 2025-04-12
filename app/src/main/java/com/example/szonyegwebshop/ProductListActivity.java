@@ -155,13 +155,11 @@ public class ProductListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.log_out_button) {
-            Log.d(LOG_TAG, "Logout clicked!");
             FirebaseAuth.getInstance().signOut();
             finish();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
         } else if (id == R.id.cart) {
-            Log.d(LOG_TAG, "Cart clicked!");
             Intent intent = new Intent(this, CartActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -209,7 +207,6 @@ public class ProductListActivity extends AppCompatActivity {
         } else {
             countTextView.setText("");
         }
-
         redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
     }
 

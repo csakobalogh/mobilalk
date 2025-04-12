@@ -3,14 +3,11 @@ package com.example.szonyegwebshop;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -42,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.i(LOG_TAG, "Felhasznalo sikeresen belepett.");
                     startProductList();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
                     Log.d(LOG_TAG, "Felhasznalo belepese nem sikerult");
                     Toast.makeText(LoginActivity.this, "Felhasznalo belepese nem sikerult: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
