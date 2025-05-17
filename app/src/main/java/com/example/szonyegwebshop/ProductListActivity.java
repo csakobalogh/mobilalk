@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -224,6 +225,27 @@ public class ProductListActivity extends AppCompatActivity {
             countTextView.setText("");
         }
         redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
+    }
+
+    private void fetchProductList() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Items")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    mItemList.clear();
+                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                        mItemList.add(doc.toObject(ShoppingItem.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateAlertIcon();
+        fetchProductList();
     }
 
     @Override

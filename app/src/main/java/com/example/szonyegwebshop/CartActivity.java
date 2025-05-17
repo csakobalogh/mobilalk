@@ -90,4 +90,11 @@ public class CartActivity extends AppCompatActivity {
         }
         totalPriceTextView.setText("Összesen: " + total + " Ft");
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadCartItems();
+        updateTotalPrice();
+    }
 }
