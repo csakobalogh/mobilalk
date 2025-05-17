@@ -2,6 +2,7 @@ package com.example.szonyegwebshop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,7 +95,13 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        loadCartItems();
-        updateTotalPrice();
+        try {
+            if (this != null) {
+                loadCartItems();
+                updateTotalPrice();
+            }
+        } catch (Exception e) {
+            Log.e("Lifecycle", "onStart hiba: " + e.getMessage());
+        }
     }
 }

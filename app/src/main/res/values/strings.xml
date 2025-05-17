@@ -93,5 +93,17 @@
     <string name="eltavolitas">Eltávolítás</string>
     <string name="vissza_a_termekekhez">Vissza a termékekhez</string>
     <string name="termekkezeles">Termékkezelés</string>
+    <string name="leiras">Leírás</string>
+    <string name="ar">Ár</string>
+    <string name="ertekeles_pl">Értékelés (pl. 4.5)</string>
+    <string name="term_k_hozz_ad_sa">Termék hozzáadása</string>
+    <string name="ment_s">Mentés</string>
+    <string name="n_v">Név</string>
+    <string name="le_r_s">Leírás</string>
+    <string name="r">Ár</string>
+    <string name="rt_kel_s_pl_4_5">Értékelés (pl. 4.5)</string>
+    <string name="legjobbra_rt_kelt_term_kek">Legjobbra értékelt termékek</string>
+    <string name="perzsa_term_kn_v_szerinti_keres_s">Perzsa terméknév szerinti keresés</string>
+    <string name="rt_kelt_term_kek_n_vekv_sorrendben">Értékelt termékek növekvő sorrendben</string>
 
 </resources>

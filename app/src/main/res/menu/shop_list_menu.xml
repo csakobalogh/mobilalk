@@ -31,7 +31,7 @@
         android:id="@+id/item_manager_button"
         android:title="@string/termekkezeles"
         android:icon="@drawable/ic_manage"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/query_results_button"
         android:title="Speciális lekérdezések"

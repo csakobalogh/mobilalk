@@ -244,8 +244,14 @@ public class ProductListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateAlertIcon();
-        fetchProductList();
+        try {
+            if (mAdapter != null && mItemList != null) {
+                updateAlertIcon();
+                fetchProductList();
+            }
+        } catch (Exception e) {
+            Log.e("Lifecycle", "onResume hiba: " + e.getMessage());
+        }
     }
 
     @Override

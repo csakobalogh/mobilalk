@@ -20,8 +20,7 @@ public class ProductManagerActivity extends AppCompatActivity {
     private CollectionReference itemsRef;
 
     private EditText nameInput, infoInput, priceInput, ratingInput;
-    private Button addButton;
-    private Button updateButton;
+    private Button addOrUpdateButton;
     private String updatingDocId = null;
 
     private RecyclerView recyclerView;
@@ -40,10 +39,8 @@ public class ProductManagerActivity extends AppCompatActivity {
         infoInput = findViewById(R.id.editInfo);
         priceInput = findViewById(R.id.editPrice);
         ratingInput = findViewById(R.id.editRating);
-        addButton = findViewById(R.id.buttonAdd);
+        addOrUpdateButton = findViewById(R.id.buttonAddOrUpdate);
         recyclerView = findViewById(R.id.itemRecyclerView);
-        updateButton = findViewById(R.id.buttonUpdate);
-        updateButton.setEnabled(false);
 
         itemList = new ArrayList<>();
         adapter = new ProductManagerAdapter(itemList, new ProductManagerAdapter.OnItemActionListener() {
@@ -53,9 +50,8 @@ public class ProductManagerActivity extends AppCompatActivity {
                 infoInput.setText(item.getInfo());
                 priceInput.setText(item.getPrice());
                 ratingInput.setText(String.valueOf(item.getRatedInfo()));
-
                 updatingDocId = docId;
-                updateButton.setEnabled(true);
+                prepareForUpdate(item, docId);
             }
 
             @Override
@@ -67,11 +63,11 @@ public class ProductManagerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        addButton.setOnClickListener(v -> addItem());
-
-        updateButton.setOnClickListener(v -> {
-            if (updatingDocId != null) {
-                onUpdateClick(updatingDocId);
+        addOrUpdateButton.setOnClickListener(v -> {
+            if (updatingDocId == null) {
+                addItem();
+            } else {
+                updateItem(updatingDocId);
             }
         });
 
@@ -88,6 +84,7 @@ public class ProductManagerActivity extends AppCompatActivity {
 
         itemsRef.add(newItem).addOnSuccessListener(docRef -> {
             Toast.makeText(this, "Hozzáadva", Toast.LENGTH_SHORT).show();
+            clearInputs();
             loadItems();
         });
     }
@@ -103,16 +100,26 @@ public class ProductManagerActivity extends AppCompatActivity {
         });
     }
 
+    public void prepareForUpdate(ShoppingItem item, String docId) {
+        nameInput.setText(item.getName());
+        infoInput.setText(item.getInfo());
+        priceInput.setText(item.getPrice());
+        ratingInput.setText(String.valueOf(item.getRatedInfo()));
+        updatingDocId = docId;
+
+        addOrUpdateButton.setText("Mentés");
+    }
+
     private void clearInputs() {
         nameInput.setText("");
         infoInput.setText("");
         priceInput.setText("");
         ratingInput.setText("");
         updatingDocId = null;
-        updateButton.setEnabled(false);
+        addOrUpdateButton.setText("Termék hozzáadása");
     }
 
-    private void onUpdateClick(String docId) {
+    private void updateItem(String docId) {
         String name = nameInput.getText().toString();
         String info = infoInput.getText().toString();
         String price = priceInput.getText().toString();

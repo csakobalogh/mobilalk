@@ -6,41 +6,35 @@
 
     <EditText
         android:id="@+id/editName"
-        android:hint="Név"
+        android:hint="@string/nev"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/editInfo"
-        android:hint="Leírás"
+        android:hint="@string/leiras"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/editPrice"
-        android:hint="Ár"
+        android:hint="@string/ar"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/editRating"
-        android:hint="Értékelés (pl. 4.5)"
+        android:hint="@string/ertekeles_pl"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/buttonAdd"
-        android:text="Termék hozzáadása"
+        android:id="@+id/buttonAddOrUpdate"
+        android:text="@string/term_k_hozz_ad_sa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mentés"
-        android:enabled="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemRecyclerView"
