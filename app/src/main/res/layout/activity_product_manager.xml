@@ -39,7 +39,7 @@
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Frissítés"
+        android:text="Mentés"
         android:enabled="false"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -6,7 +6,7 @@ public class ShoppingItem {
     private String price;
     private float ratedInfo;
     private int imageResource;
-
+    private String documentId;
     public ShoppingItem() {}
     public ShoppingItem(String name, String info, String price, float ratedInfo, int imageResource) {
         this.name = name;
@@ -14,6 +14,14 @@ public class ShoppingItem {
         this.price = price;
         this.ratedInfo = ratedInfo;
         this.imageResource = imageResource;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getName() {

@@ -61,6 +61,7 @@ public class CartActivity extends AppCompatActivity {
 
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         ShoppingItem item = doc.toObject(ShoppingItem.class);
+                        item.setDocumentId(doc.getId());
                         cartItems.add(item);
 
                         try {

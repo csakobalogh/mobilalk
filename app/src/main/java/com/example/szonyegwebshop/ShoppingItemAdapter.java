@@ -13,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder> implements Filterable {
@@ -62,7 +65,6 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public int getItemCount() {
         return mShoppingItemData.size();
     }
-
 
     @Override
     public Filter getFilter() {
@@ -133,15 +135,13 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         String uid = auth.getCurrentUser().getUid();
                         ShoppingItem item = mShoppingItemData.get(getBindingAdapterPosition());
 
+                        String documentId = item.getDocumentId();
                         db.collection("users")
                                 .document(uid)
                                 .collection("cart")
-                                .whereEqualTo("name", item.getName())
-                                .get()
-                                .addOnSuccessListener(queryDocumentSnapshots -> {
-                                    for (DocumentSnapshot doc : queryDocumentSnapshots) {
-                                        doc.getReference().delete();
-                                    }
+                                .document(documentId)
+                                .delete()
+                                .addOnSuccessListener(aVoid -> {
                                     Toast.makeText(mContext, "Eltávolítva a kosárból", Toast.LENGTH_SHORT).show();
 
                                     mShoppingItemData.remove(getBindingAdapterPosition());
