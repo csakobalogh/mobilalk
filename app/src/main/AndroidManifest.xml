@@ -26,6 +26,8 @@
             android:exported="false" />
         <activity android:name=".ProductManagerActivity"
             android:exported="false" />
+        <activity android:name=".QueryResultsActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true" >

@@ -63,7 +63,7 @@ public class ProductListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
         mItemList = new ArrayList<>();
-        mAdapter = new ShoppingItemAdapter(this, mItemList, false);
+        mAdapter = new ShoppingItemAdapter(this, mItemList, false, true);
         recyclerView.setAdapter(mAdapter);
         mFirestore = FirebaseFirestore.getInstance();
         mItems = mFirestore.collection("Items");
@@ -181,6 +181,11 @@ public class ProductListActivity extends AppCompatActivity {
             } else {
                 changeSpanCount(item, R.drawable.ic_view_row, 2);
             }
+            return true;
+        } else if (id == R.id.query_results_button) {
+            Intent intent = new Intent(this, QueryResultsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             return true;
         } else {
             return super.onOptionsItemSelected(item);

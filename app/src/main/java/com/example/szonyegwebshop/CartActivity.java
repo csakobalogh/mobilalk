@@ -28,7 +28,7 @@ public class CartActivity extends AppCompatActivity {
         totalPriceTextView = findViewById(R.id.totalPriceTextView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ShoppingItemAdapter(this, cartItems, true);
+        adapter = new ShoppingItemAdapter(this, cartItems, true, true);
         recyclerView.setAdapter(adapter);
 
         db = FirebaseFirestore.getInstance();

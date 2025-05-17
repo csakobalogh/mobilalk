@@ -32,4 +32,9 @@
         android:title="@string/termekkezeles"
         android:icon="@drawable/ic_manage"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/query_results_button"
+        android:title="Speciális lekérdezések"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="never" />
 </menu>

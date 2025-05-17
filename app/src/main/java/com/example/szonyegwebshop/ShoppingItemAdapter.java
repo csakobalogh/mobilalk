@@ -28,14 +28,16 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     private ArrayList<ShoppingItem> mShoppingItemDataAll = new ArrayList<>();
     private Context mContext;
     private boolean isCartView = false;
+    private boolean showButtons = true;
     private int lastPosition = -1;
     private OnItemRemovedListener onItemRemovedListener;
 
-    ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData, boolean isCartView) {
+    ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData, boolean isCartView, boolean showButtons) {
         this.mShoppingItemData = itemsData;
         this.mShoppingItemDataAll = itemsData;
         this.mContext = context;
         this.isCartView = isCartView;
+        this.showButtons = showButtons;
     }
 
     public interface OnItemRemovedListener {
@@ -43,10 +45,9 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     }
 
     @Override
-    public ShoppingItemAdapter.ViewHolder onCreateViewHolder(
-            ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(mContext)
-                .inflate(R.layout.list_item, parent, false));
+    public ShoppingItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View mItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        return new ViewHolder(mItemView, showButtons);
     }
 
     @Override
@@ -113,7 +114,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
         private ImageView mItemImage;
         private RatingBar mRatingBar;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView, boolean showButtons) {
             super(itemView);
 
             mTitleText = itemView.findViewById(R.id.itemTitle);
@@ -123,8 +124,12 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             mPriceText = itemView.findViewById(R.id.price);
             Button addToCartButton = itemView.findViewById(R.id.add_to_cart);
             Button removeFromCartButton = itemView.findViewById(R.id.remove_from_cart);
+
             if (addToCartButton != null && removeFromCartButton != null) {
-                if (isCartView) {
+                if (!showButtons) {
+                    addToCartButton.setVisibility(View.GONE);
+                    removeFromCartButton.setVisibility(View.GONE);
+                } else if (isCartView) {
                     addToCartButton.setVisibility(View.GONE);
                     removeFromCartButton.setVisibility(View.VISIBLE);
 
@@ -156,6 +161,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
                 } else {
                     removeFromCartButton.setVisibility(View.GONE);
+                    addToCartButton.setVisibility(View.VISIBLE);
 
                     addToCartButton.setOnClickListener(view -> {
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -170,13 +176,16 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                                 .add(item)
                                 .addOnSuccessListener(documentReference -> {
                                     Toast.makeText(mContext, "Kosárba téve!", Toast.LENGTH_SHORT).show();
-                                    ((ProductListActivity) mContext).updateAlertIcon();
+                                    if (mContext instanceof ProductListActivity) {
+                                        ((ProductListActivity) mContext).updateAlertIcon();
+                                    }
                                 })
                                 .addOnFailureListener(e -> Toast.makeText(mContext, "Hiba: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     });
                 }
             }
         }
+
 
         void bindTo(ShoppingItem currentItem) {
             mTitleText.setText(currentItem.getName());
