@@ -27,4 +27,9 @@
         android:orderInCategory="2"
         android:title="@string/kijelentkezes"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/item_manager_button"
+        android:title="@string/termekkezeles"
+        android:icon="@drawable/ic_manage"
+        app:showAsAction="ifRoom" />
 </menu>

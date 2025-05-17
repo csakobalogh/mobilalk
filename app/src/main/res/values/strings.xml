@@ -92,5 +92,6 @@
     <string name="osszesen">Összesen: 0 Ft</string>
     <string name="eltavolitas">Eltávolítás</string>
     <string name="vissza_a_termekekhez">Vissza a termékekhez</string>
+    <string name="termekkezeles">Termékkezelés</string>
 
 </resources>

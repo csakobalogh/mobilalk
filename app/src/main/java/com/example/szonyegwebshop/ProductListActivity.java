@@ -2,6 +2,7 @@ package com.example.szonyegwebshop;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,16 +15,21 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
+
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+
 import android.widget.SearchView;
 
 public class ProductListActivity extends AppCompatActivity {
@@ -159,6 +165,11 @@ public class ProductListActivity extends AppCompatActivity {
             finish();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             return true;
+        } else if (id == R.id.item_manager_button) {
+            Intent intent = new Intent(this, ProductManagerActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            return true;
         } else if (id == R.id.cart) {
             Intent intent = new Intent(this, CartActivity.class);
             startActivity(intent);
@@ -179,7 +190,7 @@ public class ProductListActivity extends AppCompatActivity {
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
         item.setIcon(drawableId);
-        GridLayoutManager layoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
+        GridLayoutManager layoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
         layoutManager.setSpanCount(spanCount);
     }
 
