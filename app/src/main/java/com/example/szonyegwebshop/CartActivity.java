@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,9 +48,27 @@ public class CartActivity extends AppCompatActivity {
 
         Button checkoutButton = findViewById(R.id.checkoutButton);
         checkoutButton.setOnClickListener(view -> {
-            finish();
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            String uid = auth.getCurrentUser().getUid();
+
+            db.collection("users").document(uid).collection("cart")
+                    .get()
+                    .addOnSuccessListener(querySnapshot -> {
+                        for (QueryDocumentSnapshot doc : querySnapshot) {
+                            doc.getReference().delete();
+                        }
+
+                        cartItems.clear();
+                        adapter.notifyDataSetChanged();
+                        updateTotalPrice();
+                        Toast Toast = null;
+                        Toast.makeText(this, "Rendelés leadva. Kosár kiürítve.", Toast.LENGTH_SHORT).show();
+                        Log.d("CartActivity", "Fizetés sikeresen megtörtént");
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e("CartActivity", "Hiba fizetés közben " + e.getMessage());
+                    });
         });
+
     }
 
     private void loadCartItems() {

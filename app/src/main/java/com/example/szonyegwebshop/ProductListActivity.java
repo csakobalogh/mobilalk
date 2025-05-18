@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +16,13 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
+import android.os.Build;
+import android.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.app.ActivityCompat;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,14 +33,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-import androidx.core.view.MenuItemCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-
-import android.widget.SearchView;
-
 public class ProductListActivity extends AppCompatActivity {
     private static final String LOG_TAG = ProductListActivity.class.getName();
     private RecyclerView recyclerView;
+    private NotificationHelper mNotificationHelper;
     private ArrayList<ShoppingItem> mItemList;
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
@@ -61,6 +62,14 @@ public class ProductListActivity extends AppCompatActivity {
             finish();
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
         mItemList = new ArrayList<>();
@@ -73,6 +82,7 @@ public class ProductListActivity extends AppCompatActivity {
         filter.addAction(Intent.ACTION_POWER_CONNECTED);
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         this.registerReceiver(powerReceiver, filter);
+        mNotificationHelper = new NotificationHelper(this);
     }
 
     BroadcastReceiver powerReceiver = new BroadcastReceiver() {
@@ -225,6 +235,7 @@ public class ProductListActivity extends AppCompatActivity {
             countTextView.setText("");
         }
         redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
+        mNotificationHelper.send("Kosárba helyezve");
     }
 
     private void fetchProductList() {
