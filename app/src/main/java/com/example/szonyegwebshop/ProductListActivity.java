@@ -3,6 +3,8 @@ package com.example.szonyegwebshop;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import android.view.Menu;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.os.Build;
+import android.os.SystemClock;
 import android.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -37,6 +40,7 @@ public class ProductListActivity extends AppCompatActivity {
     private static final String LOG_TAG = ProductListActivity.class.getName();
     private RecyclerView recyclerView;
     private NotificationHelper mNotificationHelper;
+    private AlarmManager mAlarmManager;
     private ArrayList<ShoppingItem> mItemList;
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
@@ -83,6 +87,8 @@ public class ProductListActivity extends AppCompatActivity {
         filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         this.registerReceiver(powerReceiver, filter);
         mNotificationHelper = new NotificationHelper(this);
+        mAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        setAlarmManager();
     }
 
     BroadcastReceiver powerReceiver = new BroadcastReceiver() {
@@ -250,6 +256,27 @@ public class ProductListActivity extends AppCompatActivity {
                     }
                     mAdapter.notifyDataSetChanged();
                 });
+    }
+
+    private void setAlarmManager() {
+        long repeatInterval = 60000;
+        long triggerTime = SystemClock.elapsedRealtime() + repeatInterval;
+
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        mAlarmManager.setInexactRepeating(
+                AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                triggerTime,
+                repeatInterval,
+                pendingIntent);
+
+//        mAlarmManager.cancel(pendingIntent);
     }
 
     @Override

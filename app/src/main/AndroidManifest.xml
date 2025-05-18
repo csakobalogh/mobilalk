@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SzonyegWebshop"
         tools:targetApi="31" >
+        <receiver android:name=".AlarmReceiver" android:exported="false" />
         <activity
             android:name=".CartActivity"
             android:exported="false" />
